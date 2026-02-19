@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, redirect
 from flask_smorest import Api
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
@@ -82,6 +82,10 @@ def create_app(db_url=None):
     @jwt.needs_fresh_token_loader
     def token_not_fresh_callback(jwt_header, jwt_payload):
         return jsonify({"message": "Le token doit être frais (fresh).", "error": "fresh_token_required"}), 401
+
+    @app.route("/")
+    def index():
+        return redirect("/swagger-ui")
 
     # Enregistrement des blueprints
     api.register_blueprint(StoreBlueprint)
