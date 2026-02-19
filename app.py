@@ -18,7 +18,7 @@ from resources.product import blp as ProductBlueprint
 from resources.user import blp as UserBlueprint
 
 def create_app(db_url=None):
-    """Fabrique de l'application Flask."""
+    """Initialisation de l'application Flask."""
     app = Flask(__name__)
 
     # --- CORS : autorise les requêtes depuis le frontend Angular ---
